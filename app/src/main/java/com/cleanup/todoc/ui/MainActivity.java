@@ -20,8 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cleanup.todoc.R;
-import com.cleanup.todoc.ViewModel.TodocViewModel;
-import com.cleanup.todoc.ViewModel.TodocViewModelFactory;
+import com.cleanup.todoc.view_model.TodocViewModel;
+import com.cleanup.todoc.view_model.TodocViewModelFactory;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 

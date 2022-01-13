@@ -1,9 +1,5 @@
-package com.cleanup.todoc.ViewModel;
+package com.cleanup.todoc.view_model;
 
-import android.app.Application;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -38,7 +34,7 @@ public class TodocViewModel extends ViewModel {
         });
     }
 
-    public Task getTaskById(long task_id) {
+    public LiveData<Task> getTaskById(long task_id) {
         return mRepository.getTaskById(task_id);
     }
 

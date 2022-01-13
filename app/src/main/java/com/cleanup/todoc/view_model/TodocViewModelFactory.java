@@ -1,9 +1,8 @@
-package com.cleanup.todoc.ViewModel;
+package com.cleanup.todoc.view_model;
 
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 

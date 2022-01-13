@@ -31,7 +31,7 @@ public class TodocRepository {
 
     public LiveData<List<Task>> getTasks() { return mTaskDao.getTasks(); }
 
-    public Task getTaskById(long task_id) { return mTaskDao.getTaskById(task_id); }
+    public LiveData<Task> getTaskById(long task_id) { return mTaskDao.getTaskById(task_id); }
 
     public void createTask(Task task) { mTaskDao.createTask(task); }
 
