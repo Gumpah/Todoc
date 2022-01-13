@@ -3,23 +3,34 @@ package com.cleanup.todoc.model;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
+import androidx.room.ColumnInfo;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 /**
  * <p>Model for the tasks of the application.</p>
  *
  * @author Gaëtan HERFRAY
  */
+@Entity(foreignKeys = @ForeignKey(entity = Project.class,
+        parentColumns = "project_id",
+        childColumns = "project_id"))
 public class Task {
     /**
      * The unique identifier of the task
      */
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "task_id")
     private long id;
 
     /**
      * The unique identifier of the project associated to the task
      */
+    @ColumnInfo(name = "project_id")
     private long projectId;
 
     /**
@@ -68,6 +79,10 @@ public class Task {
         this.id = id;
     }
 
+    public long getProjectId() {
+        return projectId;
+    }
+
     /**
      * Sets the unique identifier of the project associated to the task.
      *
@@ -106,6 +121,10 @@ public class Task {
         this.name = name;
     }
 
+    public long getCreationTimestamp() {
+        return creationTimestamp;
+    }
+
     /**
      * Sets the timestamp when the task has been created.
      *
@@ -114,6 +133,7 @@ public class Task {
     private void setCreationTimestamp(long creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
     }
+
 
     /**
      * Comparator to sort task from A to Z
@@ -153,5 +173,13 @@ public class Task {
         public int compare(Task left, Task right) {
             return (int) (left.creationTimestamp - right.creationTimestamp);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(id, task.id);
     }
 }
