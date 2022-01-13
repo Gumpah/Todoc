@@ -22,12 +22,12 @@ public interface TaskDao {
     Task getTaskById(long task_id);
 
     @Insert
-    long insertTask(Task task);
+    void createTask(Task task);
 
     @Update
-    int updateTask(Task task);
+    void updateTask(Task task);
 
     @Query("DELETE FROM Task WHERE task_id = :task_id")
-    int deleteTask(long task_id);
+    void deleteTask(long task_id);
 
 }

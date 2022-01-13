@@ -18,6 +18,6 @@ public interface ProjectDao {
     void createProject(Project project);
 
     @Query("SELECT * FROM Project")
-    List<Project> getProjects();
+    LiveData<List<Project>> getProjects();
 
 }

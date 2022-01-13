@@ -18,27 +18,25 @@ public class TodocRepository {
     private ProjectDao mProjectDao;
 
     private LiveData<List<Task>> mAllTasks;
-    private List<Project> mAllProjects;
+    private LiveData<List<Project>> mAllProjects;
 
-    public TodocRepository(Application application) {
-        TodocDatabase db = TodocDatabase.getDatabase(application);
-        mTaskDao = db.taskDao();
-        mProjectDao = db.projectDao();
-        mAllTasks = mTaskDao.getTasks();
-        mAllProjects = mProjectDao.getProjects();
+    public TodocRepository(TaskDao taskDao, ProjectDao projectDao) {
+        this.mTaskDao = taskDao;
+        this.mProjectDao = projectDao;
     }
 
-    public LiveData<List<Task>> getAllTasks() {
-        return mAllTasks;
-    }
+    public void createProject(Project project) { mProjectDao.createProject(project); }
 
-    public List<Project> getAllProjects() {
-        return mAllProjects;
-    }
+    public LiveData<List<Project>> getProjects() { return mProjectDao.getProjects(); }
 
-    public void insert(Task word) {
-        TodocDatabase.databaseWriteExecutor.execute(() -> {
-            mTaskDao.insertTask(word);
-        });
-    }
+    public LiveData<List<Task>> getTasks() { return mTaskDao.getTasks(); }
+
+    public Task getTaskById(long task_id) { return mTaskDao.getTaskById(task_id); }
+
+    public void createTask(Task task) { mTaskDao.createTask(task); }
+
+    public void updateTask(Task task) { mTaskDao.updateTask(task); }
+
+    public void deleteTask(long task_id) { mTaskDao.deleteTask(task_id);}
+
 }
