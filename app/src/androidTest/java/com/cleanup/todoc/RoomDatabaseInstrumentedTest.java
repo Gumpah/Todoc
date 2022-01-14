@@ -24,18 +24,14 @@ public class RoomDatabaseInstrumentedTest {
 
     // FOR DATA
 
-
     private TodocDatabase database;
 
-
     @Rule
-
 
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
 
     @Before
-
 
     public void initDb() throws Exception {
 
@@ -53,6 +49,30 @@ public class RoomDatabaseInstrumentedTest {
 
     }
 
+    // DATA SET FOR TEST
+
+    private static final long TASK_ID = 1;
+    private static final long PROJECT_ID = 1L;
+    private static final Project project = Project.getProjectById(PROJECT_ID);
+
+    private static final Task TASK_DEMO = new Task(TASK_ID, 1L, "Test", new Date().getTime());
+
+    @Test
+
+    public void insertAndGetUser() throws InterruptedException {
+
+        // BEFORE : Adding a new user
+
+        this.database.taskDao().createTask(TASK_DEMO);
+
+        // TEST
+
+        Task task = RoomDatabaseTestUtil.getValue(this.database.taskDao().getTaskById(TASK_ID));
+
+        assertEquals(task.getName(), TASK_DEMO.getName());
+        assertEquals(task.getId(), TASK_ID);
+        assertEquals(task.getProject(), Project.getProjectById(PROJECT_ID));
+    }
 
     @After
 
@@ -61,40 +81,6 @@ public class RoomDatabaseInstrumentedTest {
 
         database.close();
 
-
     }
 
-    // DATA SET FOR TEST
-
-
-    private static final long TASK_ID = 1;
-    private static final long PROJECT_ID = 1L;
-    private static final Project project = Project.getProjectById(PROJECT_ID);
-
-
-    private static final Task TASK_DEMO = new Task(TASK_ID, 1L, "Test", new Date().getTime());
-
-
-    @Test
-
-
-    public void insertAndGetUser() throws InterruptedException {
-
-
-        // BEFORE : Adding a new user
-
-
-        this.database.taskDao().createTask(TASK_DEMO);
-
-
-        // TEST
-
-
-        Task task = RoomDatabaseTestUtil.getValue(this.database.taskDao().getTaskById(TASK_ID));
-
-
-        assertEquals(task.getName(), TASK_DEMO.getName());
-        assertEquals(task.getId(), TASK_ID);
-        assertEquals(task.getProject(), Project.getProjectById(PROJECT_ID));
-    }
 }

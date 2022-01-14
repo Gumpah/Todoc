@@ -31,12 +31,12 @@ public class TodocRepository {
 
     public LiveData<List<Task>> getTasks() { return mTaskDao.getTasks(); }
 
-    public LiveData<Task> getTaskById(long task_id) { return mTaskDao.getTaskById(task_id); }
+    public LiveData<Task> getTaskById(long taskId) { return mTaskDao.getTaskById(taskId); }
 
     public void createTask(Task task) { mTaskDao.createTask(task); }
 
     public void updateTask(Task task) { mTaskDao.updateTask(task); }
 
-    public void deleteTask(long task_id) { mTaskDao.deleteTask(task_id);}
+    public void deleteTask(long taskId) { mTaskDao.deleteTask(taskId);}
 
 }

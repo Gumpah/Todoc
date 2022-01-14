@@ -24,10 +24,6 @@ public abstract class TodocDatabase extends RoomDatabase {
     // --- SINGLETON ---
 
     private static volatile TodocDatabase INSTANCE;
-    private static final int NUMBER_OF_THREADS = 4;
-    public static final ExecutorService databaseWriteExecutor =
-            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-
 
     // --- DAO ---
 

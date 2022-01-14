@@ -1,4 +1,4 @@
-package com.cleanup.todoc.view_model;
+package com.cleanup.todoc.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -13,7 +13,7 @@ import java.util.concurrent.Executor;
 public class TodocViewModel extends ViewModel {
 
     private TodocRepository mRepository;
-    private final Executor executor;
+    private Executor executor;
 
     public TodocViewModel (TodocRepository todocRepository, Executor executor) {
         this.mRepository = todocRepository;
@@ -34,8 +34,8 @@ public class TodocViewModel extends ViewModel {
         });
     }
 
-    public LiveData<Task> getTaskById(long task_id) {
-        return mRepository.getTaskById(task_id);
+    public LiveData<Task> getTaskById(long taskId) {
+        return mRepository.getTaskById(taskId);
     }
 
     public void createTask(Task task) {

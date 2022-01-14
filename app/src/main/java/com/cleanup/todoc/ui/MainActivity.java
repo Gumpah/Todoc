@@ -20,8 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cleanup.todoc.R;
-import com.cleanup.todoc.view_model.TodocViewModel;
-import com.cleanup.todoc.view_model.TodocViewModelFactory;
+import com.cleanup.todoc.viewmodel.TodocViewModel;
+import com.cleanup.todoc.viewmodel.TodocViewModelFactory;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
@@ -115,12 +115,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
         initTasks();
 
-        findViewById(R.id.fab_add_task).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showAddTaskDialog();
-            }
-        });
+        findViewById(R.id.fab_add_task).setOnClickListener(view -> showAddTaskDialog());
 
         System.out.println("Interface ready");
     }
@@ -130,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     }
 
     private void getTasks(List<Task> tasks) {
-        mTasks = new ArrayList<Task>(tasks);
+        mTasks = new ArrayList<>(tasks);
         updateTasks();
     }
 
@@ -139,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     }
 
     private void getProjects(List<Project> projects) {
-        mProjects = new ArrayList<Project>(projects);
+        mProjects = new ArrayList<>(projects);
     }
 
     private void configureViewModel() {

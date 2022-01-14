@@ -1,4 +1,4 @@
-package com.cleanup.todoc.view_model;
+package com.cleanup.todoc.viewmodel;
 
 import android.content.Context;
 
