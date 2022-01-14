@@ -63,7 +63,7 @@ public class RoomDatabaseInstrumentedTest {
 
         // BEFORE : Adding a new user
 
-        this.database.taskDao().createTask(TASK_DEMO);
+        this.database.taskDao().insertTask(TASK_DEMO);
 
         // TEST
 

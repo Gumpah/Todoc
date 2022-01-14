@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     }
 
     private void initTasks() {
-        this.mTodocViewModel.getTasks().observe(this, this::getTasks);
+        mTodocViewModel.getTasks().observe(this, this::getTasks);
     }
 
     private void getTasks(List<Task> tasks) {
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     }
 
     private void initProjects() {
-        this.mTodocViewModel.getProjects().observe(this, this::getProjects);
+        mTodocViewModel.getProjects().observe(this, this::getProjects);
     }
 
     private void getProjects(List<Project> projects) {
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     }
 
     private void configureViewModel() {
-        this.mTodocViewModel = new ViewModelProvider(this, TodocViewModelFactory.getInstance(this)).get(TodocViewModel.class);
+        mTodocViewModel = new ViewModelProvider(this, TodocViewModelFactory.getInstance(this)).get(TodocViewModel.class);
     }
 
 
@@ -242,7 +242,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      * @param task the task to be added to the list
      */
     private void addTask(@NonNull Task task) {
-        mTodocViewModel.createTask(task);
+        mTodocViewModel.insertTask(task);
         updateTasks();
     }
 

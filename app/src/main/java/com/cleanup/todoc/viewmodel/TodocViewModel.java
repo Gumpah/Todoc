@@ -28,9 +28,9 @@ public class TodocViewModel extends ViewModel {
         return mRepository.getTasks();
     }
 
-    public void createProject(Project project) {
+    public void insertProject(Project project) {
         executor.execute(() -> {
-            mRepository.createProject(project);
+            mRepository.insertProject(project);
         });
     }
 
@@ -38,9 +38,9 @@ public class TodocViewModel extends ViewModel {
         return mRepository.getTaskById(taskId);
     }
 
-    public void createTask(Task task) {
+    public void insertTask(Task task) {
         executor.execute(() -> {
-            mRepository.createTask(task);
+            mRepository.insertTask(task);
         });
     }
 

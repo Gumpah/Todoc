@@ -1,10 +1,7 @@
 package com.cleanup.todoc.repository;
 
-import android.app.Application;
-
 import androidx.lifecycle.LiveData;
 
-import com.cleanup.todoc.database.TodocDatabase;
 import com.cleanup.todoc.database.dao.ProjectDao;
 import com.cleanup.todoc.database.dao.TaskDao;
 import com.cleanup.todoc.model.Project;
@@ -25,7 +22,7 @@ public class TodocRepository {
         this.mProjectDao = projectDao;
     }
 
-    public void createProject(Project project) { mProjectDao.createProject(project); }
+    public void insertProject(Project project) { mProjectDao.insertProject(project); }
 
     public LiveData<List<Project>> getProjects() { return mProjectDao.getProjects(); }
 
@@ -33,7 +30,7 @@ public class TodocRepository {
 
     public LiveData<Task> getTaskById(long taskId) { return mTaskDao.getTaskById(taskId); }
 
-    public void createTask(Task task) { mTaskDao.createTask(task); }
+    public void insertTask(Task task) { mTaskDao.insertTask(task); }
 
     public void updateTask(Task task) { mTaskDao.updateTask(task); }
 
