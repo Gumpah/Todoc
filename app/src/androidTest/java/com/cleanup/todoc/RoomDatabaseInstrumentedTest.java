@@ -16,8 +16,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4ClassRunner.class)
 public class RoomDatabaseInstrumentedTest {
@@ -27,12 +29,10 @@ public class RoomDatabaseInstrumentedTest {
     private TodocDatabase database;
 
     @Rule
-
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
 
     @Before
-
     public void initDb() throws Exception {
 
 
@@ -47,35 +47,97 @@ public class RoomDatabaseInstrumentedTest {
 
                 .build();
 
+        Project[] projects = Project.getAllProjects();
+        for (Project project : projects) {
+            this.database.projectDao().insertProject(project);
+        }
+
     }
 
     // DATA SET FOR TEST
 
-    private static final long TASK_ID = 1;
-    private static final long PROJECT_ID = 1L;
-    private static final Project project = Project.getProjectById(PROJECT_ID);
+    private static final Task TASK_DEMO1 = new Task(1, 1L, "Test1", new Date().getTime());
+    private static final Task TASK_DEMO2 = new Task(2, 2L, "Test2", new Date().getTime());
+    private static final Task TASK_DEMO3 = new Task(3, 3L, "Test3", new Date().getTime());
+    private static final Task TASK_DEMO4 = new Task(4, 1L, "Test4", new Date().getTime());
 
-    private static final Task TASK_DEMO = new Task(TASK_ID, 1L, "Test", new Date().getTime());
+    @Test
+    public void getItemsWhenNoItemInserted() throws InterruptedException {
+
+        // TEST
+        List<Task> tasks = RoomDatabaseTestUtil.getValue(this.database.taskDao().getTasks());
+
+        assertTrue(tasks.isEmpty());
+
+    }
+
+    @Test
+    public void insertAndGetTask() throws InterruptedException {
+
+        // BEFORE
+        this.database.taskDao().insertTask(TASK_DEMO1);
+        this.database.taskDao().insertTask(TASK_DEMO2);
+        this.database.taskDao().insertTask(TASK_DEMO3);
+
+        // TEST
+        Task task = RoomDatabaseTestUtil.getValue(this.database.taskDao().getTaskById(1));
+
+        assertEquals(task.getName(), TASK_DEMO1.getName());
+        assertEquals(task.getId(), 1);
+        assertEquals(task.getProject().getId(), 1L);
+
+        List<Task> tasks = RoomDatabaseTestUtil.getValue(this.database.taskDao().getTasks());
+
+        assertEquals(3, tasks.size());
+    }
 
     @Test
 
-    public void insertAndGetUser() throws InterruptedException {
 
-        // BEFORE : Adding a new user
+    public void insertAndUpdateTask() throws InterruptedException {
 
-        this.database.taskDao().insertTask(TASK_DEMO);
 
-        // TEST
+        // BEFORE
+        this.database.taskDao().insertTask(TASK_DEMO4);
 
-        Task task = RoomDatabaseTestUtil.getValue(this.database.taskDao().getTaskById(TASK_ID));
+        Task task = RoomDatabaseTestUtil.getValue(this.database.taskDao().getTaskById(4));
 
-        assertEquals(task.getName(), TASK_DEMO.getName());
-        assertEquals(task.getId(), TASK_ID);
-        assertEquals(task.getProject(), Project.getProjectById(PROJECT_ID));
+        String expectedName = "New name";
+
+        Task newTask = new Task(4, 1L, expectedName, new Date().getTime());
+
+        String name = RoomDatabaseTestUtil.getValue(this.database.taskDao().getTaskById(4)).getName();
+
+        this.database.taskDao().updateTask(newTask);
+
+        String actualName = RoomDatabaseTestUtil.getValue(this.database.taskDao().getTaskById(4)).getName();
+
+
+        //TEST
+        assertEquals(actualName, expectedName);
+
+    }
+
+    @Test
+
+
+    public void insertAndDeleteItem() throws InterruptedException {
+
+        // BEFORE
+        this.database.taskDao().insertTask(TASK_DEMO4);
+
+        int expectedNumberOfTasks = RoomDatabaseTestUtil.getValue(this.database.taskDao().getTasks()).size() - 1;
+
+        this.database.taskDao().deleteTask(4);
+
+        int actualNumberOfTasks = RoomDatabaseTestUtil.getValue(this.database.taskDao().getTasks()).size();
+
+        //TEST
+        assertEquals(expectedNumberOfTasks, actualNumberOfTasks);
+
     }
 
     @After
-
     public void closeDb() throws Exception {
 
 
