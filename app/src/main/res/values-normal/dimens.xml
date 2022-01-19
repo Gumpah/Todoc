@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="lbl_no_task_textSize">22sp</dimen>
+    <dimen name="lbl_task_name_textSize">16sp</dimen>
+    <dimen name="lbl_project_name_textSize">16sp</dimen>
+    <dimen name="img_project_layout_width">48dp</dimen>
+    <dimen name="img_project_layout_height">48dp</dimen>
+    <dimen name="project_spinner_textSize">14sp</dimen>
+    <dimen name="txt_task_name_textSize">14sp</dimen>
+</resources>

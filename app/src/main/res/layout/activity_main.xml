@@ -13,7 +13,7 @@
         android:drawableTop="@drawable/ic_work_off"
         android:gravity="center_horizontal"
         android:text="@string/no_task"
-        android:textSize="22sp"
+        android:textSize="@dimen/lbl_no_task_textSize"
         tools:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView

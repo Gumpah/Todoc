@@ -116,8 +116,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         initTasks();
 
         findViewById(R.id.fab_add_task).setOnClickListener(view -> showAddTaskDialog());
-
-        System.out.println("Interface ready");
     }
 
     private void initTasks() {
