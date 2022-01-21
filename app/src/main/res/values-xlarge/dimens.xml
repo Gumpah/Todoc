@@ -5,6 +5,6 @@
     <dimen name="lbl_project_name_textSize">24sp</dimen>
     <dimen name="img_project_layout_width">64dp</dimen>
     <dimen name="img_project_layout_height">64dp</dimen>
-    <dimen name="project_spinner_textSize">20sp</dimen>
-    <dimen name="txt_task_name_textSize">20sp</dimen>
+    <dimen name="project_spinner_textSize">22sp</dimen>
+    <dimen name="txt_task_name_textSize">22sp</dimen>
 </resources>

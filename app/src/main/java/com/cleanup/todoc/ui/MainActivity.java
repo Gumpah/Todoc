@@ -110,9 +110,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         listTasks.setAdapter(adapter);
 
         configureViewModel();
-
         initProjects();
-
         initTasks();
 
         findViewById(R.id.fab_add_task).setOnClickListener(view -> showAddTaskDialog());

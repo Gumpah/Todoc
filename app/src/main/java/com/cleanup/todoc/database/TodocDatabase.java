@@ -21,18 +21,15 @@ public abstract class TodocDatabase extends RoomDatabase {
     private final static String databaseName = "MyDatabase.db";
 
     // --- SINGLETON ---
-
     private static volatile TodocDatabase INSTANCE;
 
     // --- DAO ---
-
     public abstract TaskDao taskDao();
 
     public abstract ProjectDao projectDao();
 
 
     // --- INSTANCE ---
-
     public static TodocDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (TodocDatabase.class) {
