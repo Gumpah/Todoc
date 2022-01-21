@@ -1,0 +1,3 @@
+* Test instrumentalisé MainActivity: [lien](http://htmlpreview.github.io/?https://github.com/Gumpah/Todoc/blob/master/tests/MainActivityInstrumentedTest.html)
+* Test instrumentalisé Room : [lien](http://htmlpreview.github.io/?https://github.com/Gumpah/Todoc/blob/master/tests/RoomDatabaseInstrumentedTest.html)
+* Test unitaire : [lien](http://htmlpreview.github.io/?https://github.com/Gumpah/Todoc/blob/master/tests/TaskUnitTest.html)
