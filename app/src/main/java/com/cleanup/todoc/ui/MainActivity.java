@@ -109,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         listTasks.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         listTasks.setAdapter(adapter);
 
+        sortMethod = SortMethod.OLD_FIRST;
+
         configureViewModel();
         initProjects();
         initTasks();
