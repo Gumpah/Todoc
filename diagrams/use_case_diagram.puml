@@ -4,10 +4,20 @@ left to right direction
 
 Utilisateur as User
 
+
 User ---> (Lister les tâches)
 User ---> (Ajouter une tâche)
 User ---> (Supprimer une tâche)
-User ---> (Trier les tâches)
+
+(Trier les tâches) as Tri
+
+User ---> Tri
+Tri ----> (Tri par ordre alphabétique)
+Tri ----> (Tri par ordre alphabétique inversé)
+Tri ----> (Tri par ordre de création)
+Tri ----> (Tri par ordre de création inversé)
+
+
 
 
 @enduml
